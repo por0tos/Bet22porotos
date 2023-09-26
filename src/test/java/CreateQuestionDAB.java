@@ -15,8 +15,8 @@ import domain.Event;
 import domain.Question;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
-import test.businessLogic.TestFacadeImplementation;
-import test.dataAccess.TestDataAccess;
+import businessLogic.TestFacadeImplementation;
+import dataAccess.TestDataAccess;
 
 public class CreateQuestionDAB {
 
