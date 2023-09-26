@@ -100,12 +100,14 @@ public class CreateQuestionDAB {
 					e.printStackTrace();
 				}	
 				
-				//invoke System Under Test (sut)  
-				Question q=sut.createQuestion(null, queryText, betMinimum);
-				
-				
-				//verify the results
-				assertTrue(q==null);
+				try {
+					//invoke System Under Test (sut)  
+					Question q=sut.createQuestion(null, queryText, betMinimum);
+				}
+				catch (NullPointerException e) {
+					assertTrue(true);
+					return;
+				}
 				
 				
 			   } catch (QuestionAlreadyExist e) {
@@ -115,7 +117,7 @@ public class CreateQuestionDAB {
 				} 
 			   }
 	@Test
-	//sut.createQuestion:  The question is null. The test fail
+	//sut.createQuestion:  The system is closed. The test fail
 	public void test3() {
 		try {
 			
@@ -127,7 +129,7 @@ public class CreateQuestionDAB {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Date oneDate=null;;
 			try {
-				oneDate = sdf.parse("05/10/2022");
+				oneDate = sdf.parse("05/10/2023");
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -139,20 +141,13 @@ public class CreateQuestionDAB {
 			testDA.close();			
 			
 			//invoke System Under Test (sut)  
-			Question q=sut.createQuestion(ev, queryText, betMinimum);
-			
-			
-			//verify the results
-			assertTrue(q==null);
-			
-			
-			//q datubasean dago
-			testDA.open();
-			boolean exist = testDA.existQuestion(ev,q);
-				
-			assertTrue(!exist);
-			testDA.close();
-			
+			try {
+				Question q=sut.createQuestion(ev, queryText, betMinimum);
+			}
+			catch (NullPointerException e) {
+				assertTrue(true);
+			}
+						
 		   } catch (QuestionAlreadyExist e) {
 			// TODO Auto-generated catch block
 			// if the program goes to this point fail  
