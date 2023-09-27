@@ -70,7 +70,7 @@ public class TestDataAccess {
 			Event ev=null;
 				db.getTransaction().begin();
 				try {
-				    ev=new Event(desc,d);
+				    ev=new Event(null, desc,d, null, null);
 				    ev.addQuestion(question, qty);
 					db.persist(ev);
 					db.getTransaction().commit();
