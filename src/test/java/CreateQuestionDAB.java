@@ -9,14 +9,13 @@ import java.util.Date;
 import org.junit.Test;
 
 import configuration.ConfigXML;
-//import dataAccess.DataAccessInterface;
 import dataAccess.DataAccess;
 import domain.Event;
 import domain.Question;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
-import businessLogic.TestFacadeImplementation;
-import dataAccess.TestDataAccess;
+import test.businessLogic.TestFacadeImplementation;
+import test.dataAccess.TestDataAccess;
 
 public class CreateQuestionDAB {
 
@@ -100,14 +99,12 @@ public class CreateQuestionDAB {
 					e.printStackTrace();
 				}	
 				
-				try {
-					//invoke System Under Test (sut)  
-					Question q=sut.createQuestion(null, queryText, betMinimum);
-				}
-				catch (NullPointerException e) {
-					assertTrue(true);
-					return;
-				}
+				//invoke System Under Test (sut)  
+				Question q=sut.createQuestion(null, queryText, betMinimum);
+				
+				
+				//verify the results
+				assertTrue(q==null);
 				
 				
 			   } catch (QuestionAlreadyExist e) {
@@ -117,7 +114,7 @@ public class CreateQuestionDAB {
 				} 
 			   }
 	@Test
-	//sut.createQuestion:  The system is closed. The test fail
+	//sut.createQuestion:  The question is null. The test fail
 	public void test3() {
 		try {
 			
@@ -129,7 +126,7 @@ public class CreateQuestionDAB {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Date oneDate=null;;
 			try {
-				oneDate = sdf.parse("05/10/2023");
+				oneDate = sdf.parse("05/10/2022");
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -141,13 +138,20 @@ public class CreateQuestionDAB {
 			testDA.close();			
 			
 			//invoke System Under Test (sut)  
-			try {
-				Question q=sut.createQuestion(ev, queryText, betMinimum);
-			}
-			catch (NullPointerException e) {
-				assertTrue(true);
-			}
-						
+			Question q=sut.createQuestion(ev, queryText, betMinimum);
+			
+			
+			//verify the results
+			assertTrue(q==null);
+			
+			
+			//q datubasean dago
+			testDA.open();
+			boolean exist = testDA.existQuestion(ev,q);
+				
+			assertTrue(!exist);
+			testDA.close();
+			
 		   } catch (QuestionAlreadyExist e) {
 			// TODO Auto-generated catch block
 			// if the program goes to this point fail  

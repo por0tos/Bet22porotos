@@ -1,4 +1,4 @@
-package dataAccess;
+package test.dataAccess;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -70,8 +70,7 @@ public class TestDataAccess {
 			Event ev=null;
 				db.getTransaction().begin();
 				try {
-					//cambiar
-				    ev=new Event(desc,d, null, null);
+				    ev=new Event(desc,d);
 				    ev.addQuestion(question, qty);
 					db.persist(ev);
 					db.getTransaction().commit();

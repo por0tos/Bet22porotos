@@ -11,13 +11,13 @@ import org.junit.Test;
 
 import businessLogic.BLFacadeImplementation;
 import configuration.ConfigXML;
-//import dataAccess.DataAccessInterface;
+import dataAccess.DataAccessInterface;
 import dataAccess.DataAccess;
 import domain.Event;
 import domain.Question;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
-import businessLogic.TestFacadeImplementation;
+import test.businessLogic.TestFacadeImplementation;
 
 public class CreateQuestionInt {
 	 static BLFacadeImplementation sut;

@@ -9,14 +9,14 @@ import java.util.Date;
 import org.junit.Test;
 
 import configuration.ConfigXML;
-//import dataAccess.DataAccessInterface;
+import dataAccess.DataAccessInterface;
 import dataAccess.DataAccess;
 import domain.Event;
 import domain.Question;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
-import businessLogic.TestFacadeImplementation;
-import dataAccess.TestDataAccess;
+import test.businessLogic.TestFacadeImplementation;
+import test.dataAccess.TestDataAccess;
 
 public class CreateQuestionDAW {
 
