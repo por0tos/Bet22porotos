@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import domain.Event;
@@ -64,6 +65,20 @@ public class TestDataAccess {
 		} else 
 		return false;
     }
+	
+	public boolean removeEventsWithDescDate(String desc, Date d) {
+		System.out.println(">> DataAccessTest: removeEventWithDescDate");
+		boolean rem = false;
+		TypedQuery<Event> Equery = db.createQuery("SELECT e FROM Event e WHERE e.getEventDate() =?1 AND e.getDescription() = ?2",Event.class);
+		Equery.setParameter(1, d);
+		Equery.setParameter(2, desc);
+		for(Event ev: Equery.getResultList()) {
+			removeEvent(ev);
+			rem = true;
+		}
+		return rem;
+		
+	}
 		
 		public Event addEventWithQuestion(String desc, Date d, String question, float qty) {
 			System.out.println(">> DataAccessTest: addEvent");
