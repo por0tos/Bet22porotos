@@ -127,7 +127,6 @@ public class CreateQuestionBLBMTest {
 		   }
 	@Test
 	public void test7() {
-		try {
 			//define paramaters
 			String queryText="proba galdera";
 			Float betMinimum=new Float(2);
@@ -142,9 +141,15 @@ public class CreateQuestionBLBMTest {
 			
 			//configure Mock
 			Mockito.doReturn(oneDate).when(mockedEvent).getEventDate();
-			Mockito.when(dataAccess.createQuestion(Mockito.any(Event.class),Mockito.any(String.class), Mockito.any(Integer.class))).thenThrow(QuestionAlreadyExist.class);
-			
 
+			try {
+			Mockito.when(dataAccess.createQuestion(Mockito.any(Event.class),Mockito.any(String.class), Mockito.any(Integer.class))).thenThrow(QuestionAlreadyExist.class);
+			} catch (Exception e) {
+				// Si llega hasta aqui, no debería dar error
+				fail();
+			}
+			
+			try {
 			//invoke System Under Test (sut) 
 			sut.createQuestion(mockedEvent, queryText, betMinimum);
 			
@@ -155,16 +160,10 @@ public class CreateQuestionBLBMTest {
 			   
 			// if the program goes to this point OK
 			assertTrue(true);
-			} catch (EventFinished e) {
-				// if the program goes to this point fail
-			    fail();
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		   }
-	
-	
-	
-	
-		
+		   } catch (EventFinished e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail();
+		}
+	}
 }
