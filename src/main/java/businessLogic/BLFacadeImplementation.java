@@ -88,7 +88,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		
 		return qry;
-   };
+   }
 	
 	/**
 	 * This method invokes the data access to retrieve the events of a given date 
@@ -159,8 +159,9 @@ public class BLFacadeImplementation  implements BLFacade {
     }
     @WebMethod	
     public boolean gertaerakSortu(String description,Date eventDate, String sport) throws EventFinished{
-    	if(new Date().compareTo(eventDate)>0)
-			throw new EventFinished("Gertaera honen data dagoeneko pasa da");
+    	if(new Date().compareTo(eventDate)>0) {
+    		throw new EventFinished("Gertaera honen data dagoeneko pasa da");
+    	}
     	
     	dbManager.open(false);
     	boolean b = dbManager.gertaerakSortu(description, eventDate, sport);
