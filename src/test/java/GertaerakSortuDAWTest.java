@@ -40,7 +40,7 @@ public class GertaerakSortuDAWTest {
 	
 	@Test
 	public void testCamino2() {
-		// El deporte SI existira en la bd, entonces NO se insertara
+		// El evento SI existira en la bd, entonces NO se insertara
 		
 		String desc = "Barsa-Madrid";
 		Calendar cal = Calendar.getInstance();
