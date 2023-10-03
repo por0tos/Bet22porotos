@@ -640,7 +640,7 @@ public class DataAccess  {
 	 */
 	public Vector<Event> getEvents(Date date) {
 		System.out.println(">> DataAccess: getEvents");
-		Vector<Event> res = new Vector<Event>();	
+		Vector<Event> res = new Vector<>();	
 		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate=?1",Event.class);   
 		query.setParameter(1, date);
 		List<Event> events = query.getResultList();
@@ -659,7 +659,7 @@ public class DataAccess  {
 	 */
 	public Vector<Date> getEventsMonth(Date date) {
 		System.out.println(">> DataAccess: getEventsMonth");
-		Vector<Date> res = new Vector<Date>();	
+		Vector<Date> res = new Vector<>();	
 		
 		Date firstDayMonthDate= UtilDate.firstDayMonth(date);
 		Date lastDayMonthDate= UtilDate.lastDayMonth(date);
