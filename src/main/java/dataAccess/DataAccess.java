@@ -733,13 +733,7 @@ public void open(boolean initializeMode){
 		db.getTransaction().begin();
 		Sport spo =db.find(Sport.class, sport);
 		if(spo!=null) {
-			TypedQuery<Event> Equery = db.createQuery("SELECT e FROM Event e WHERE e.getEventDate() =?1 ",Event.class);
-			Equery.setParameter(1, eventDate);
-			for(Event ev: Equery.getResultList()) {
-				if(ev.getDescription().equals(description)) {
-					b = false;
-				}
-			}
+			b = isAnyFreeSpotForEvent(description, eventDate);
 			if(b) {
 				String[] taldeak = description.split("-");
 				Team lokala = new Team(taldeak[0]);
@@ -753,6 +747,18 @@ public void open(boolean initializeMode){
 			return false;
 		}
 		db.getTransaction().commit();
+		return b;
+	}
+
+	private boolean isAnyFreeSpotForEvent(String description, Date eventDate) {
+		boolean b = true;
+		TypedQuery<Event> Equery = db.createQuery("SELECT e FROM Event e WHERE e.getEventDate() =?1 ",Event.class);
+		Equery.setParameter(1, eventDate);
+		for(Event ev: Equery.getResultList()) {
+			if(ev.getDescription().equals(description)) {
+				b = false;
+			}
+		}
 		return b;
 	}
 	
