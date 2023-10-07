@@ -958,6 +958,12 @@ public void open(boolean initializeMode){
 		Question que = q.getQuestion(); 
 		Question question = db.find(Question.class, que); 
 		question.setResult(result);
+		markatuKuotak(question);
+		db.getTransaction().commit();
+		markatuIrabaziak(listApustuak);
+	}
+
+	private void markatuKuotak(Question question) {
 		for(Quote quo: question.getQuotes()) {
 			for(Apustua apu: quo.getApustuak()) {
 				
@@ -969,7 +975,9 @@ public void open(boolean initializeMode){
 				}
 			}
 		}
-		db.getTransaction().commit();
+	}
+
+	private void markatuIrabaziak(Vector<Apustua> listApustuak) {
 		for(Apustua a : listApustuak) {
 			db.getTransaction().begin();
 			Boolean bool=a.getApustuAnitza().irabazitaMarkatu();
