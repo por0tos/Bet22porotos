@@ -874,7 +874,7 @@ public void open(boolean initializeMode){
 					}
 				}
 				if(b) {
-					if(erab.getNork().getDiruLimitea()<balioa) {
+					if(nork.getDiruLimitea()<balioa) {
 						this.ApustuaEgin(nork, quote, nork.getDiruLimitea(), apustuBikoitzaGalarazi);
 					}else{
 						this.ApustuaEgin(nork, quote, balioa, apustuBikoitzaGalarazi);
