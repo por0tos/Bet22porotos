@@ -1076,10 +1076,7 @@ public void open(boolean initializeMode){
 		query.setParameter(2, date);
 		if(query.getResultList().isEmpty()) {
 			b=true;
-			String[] taldeak = gertaera.getDescription().split("-");
-			Team lokala = new Team(taldeak[0]);
-			Team kanpokoa = new Team(taldeak[1]);
-			Event gertKopiatu = new Event(gertaera.getDescription(), date, lokala, kanpokoa);
+			Event gertKopiatu = eventuBerriaSortu(date, gertaera);
 			gertKopiatu.setSport(gertaera.getSport());
 			gertaera.getSport().addEvent(gertKopiatu);
 			db.persist(gertKopiatu);
@@ -1097,6 +1094,13 @@ public void open(boolean initializeMode){
 		}
 		db.getTransaction().commit();
 		return b;
+	}
+
+	private Event eventuBerriaSortu(Date date, Event gertaera) {
+		String[] taldeak = gertaera.getDescription().split("-");
+		Team lokala = new Team(taldeak[0]);
+		Team kanpokoa = new Team(taldeak[1]);
+		return new Event(gertaera.getDescription(), date, lokala, kanpokoa);
 	}
 	
 	public boolean jarraitu(Registered jabea, Registered jarraitua, Double limit) {
