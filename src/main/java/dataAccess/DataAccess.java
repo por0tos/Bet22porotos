@@ -866,17 +866,18 @@ public void open(boolean initializeMode){
 			db.getTransaction().commit();
 			for(Jarraitzailea reg:user.getJarraitzaileLista()) {
 				Jarraitzailea erab=db.find(Jarraitzailea.class, reg.getJarraitzaileaNumber());
+				Registered nork = erab.getNork();
 				b=true;
-				for(ApustuAnitza apu: erab.getNork().getApustuAnitzak()) {
+				for(ApustuAnitza apu: nork.getApustuAnitzak()) {
 					if(apu.getApustuKopia()==apustuAnitza.getApustuKopia()) {
 						b=false;
 					}
 				}
 				if(b) {
 					if(erab.getNork().getDiruLimitea()<balioa) {
-						this.ApustuaEgin(erab.getNork(), quote, erab.getNork().getDiruLimitea(), apustuBikoitzaGalarazi);
+						this.ApustuaEgin(nork, quote, nork.getDiruLimitea(), apustuBikoitzaGalarazi);
 					}else{
-						this.ApustuaEgin(erab.getNork(), quote, balioa, apustuBikoitzaGalarazi);
+						this.ApustuaEgin(nork, quote, balioa, apustuBikoitzaGalarazi);
 					}
 				}
 			}
