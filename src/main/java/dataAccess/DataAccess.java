@@ -990,17 +990,14 @@ public void open(boolean initializeMode){
 	
 	public boolean gertaeraEzabatu(Event ev) {
 		Event event  = db.find(Event.class, ev); 
-		boolean resultB = true; 
 		List<Question> listQ = event.getQuestions(); 
 		
 		for(Question q : listQ) {
 			if(q.getResult() == null) {
-				resultB = false; 
+				return false; 
 			}
 		}
-		if(resultB == false) {
-			return false;
-		}else if(new Date().compareTo(event.getEventDate())<0) {
+		if(new Date().compareTo(event.getEventDate())<0) {
 			TypedQuery<Quote> Qquery = db.createQuery("SELECT q FROM Quote q WHERE q.getQuestion().getEvent().getEventNumber() =?1", Quote.class);
 			Qquery.setParameter(1, event.getEventNumber()); 
 			List<Quote> listQUO = Qquery.getResultList();
