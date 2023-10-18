@@ -72,6 +72,11 @@ public class Sport implements Serializable{
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(apustuKantitatea, events, izena);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -80,6 +85,7 @@ public class Sport implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Sport other = (Sport) obj;
-		return Objects.equals(izena, other.izena);
+		return Objects.equals(apustuKantitatea, other.apustuKantitatea) && Objects.equals(events, other.events)
+				&& Objects.equals(izena, other.izena);
 	}
 }

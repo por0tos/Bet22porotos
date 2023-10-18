@@ -108,6 +108,11 @@ public class Quote implements Serializable{
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(apustuak, balio, forecast, question, quoteNumber);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -116,7 +121,9 @@ public class Quote implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Quote other = (Quote) obj;
-		return Objects.equals(quoteNumber, other.quoteNumber);
+		return Objects.equals(apustuak, other.apustuak) && Objects.equals(balio, other.balio)
+				&& Objects.equals(forecast, other.forecast) && Objects.equals(question, other.question)
+				&& Objects.equals(quoteNumber, other.quoteNumber);
 	}
 	
 	
