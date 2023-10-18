@@ -98,7 +98,7 @@ public class Quote implements Serializable{
 		boolean aurkitua = false; 
 		int i = 0; 
 		while( i<apustuak.size() && !aurkitua) {
-			if(apustuak.get(i).getApostuaNumber()==a.getApostuaNumber()) {
+			if(apustuak.get(i).getApostuaNumber().equals(a.getApostuaNumber())) {
 				apustuak.remove(i); 
 				aurkitua = true; 
 			}

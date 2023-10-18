@@ -872,7 +872,7 @@ public void open(boolean initializeMode){
 			Registered nork = erab.getNork();
 			Boolean b=true;
 			for(ApustuAnitza apu: nork.getApustuAnitzak()) {
-				if(apu.getApustuKopia()==apustuAnitza.getApustuKopia()) {
+				if(apu.getApustuKopia().equals(apustuAnitza.getApustuKopia())) {
 					b=false;
 				}
 			}
