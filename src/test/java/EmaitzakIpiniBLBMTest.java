@@ -30,11 +30,11 @@ public class EmaitzakIpiniBLBMTest {
     }
     
     @Test
-	public void test1() {
+	public void test1() throws EventNotFinished {
 		//La cuota no existe en la BD
     	q = new Quote(245.0, "2sedrf");
+    	Mockito.doThrow(new NullPointerException()).when(da).EmaitzakIpini(q);
     	try {
-			Mockito.doThrow(new NullPointerException()).when(da).EmaitzakIpini(q);
 			da.EmaitzakIpini(q);
 			fail("No deberia de ir bien");
 		} catch (EventNotFinished | NullPointerException e) {
@@ -43,12 +43,12 @@ public class EmaitzakIpiniBLBMTest {
 	}
 	
 	@Test
-	public void test2() {
+	public void test2() throws EventNotFinished {
 		//La fecha de ese evento es posterior a la fecha actual
 		calendar.set(2023, Calendar.NOVEMBER, 01, 0, 0, 0);
-		q = new Quote(100.0, "2", new Question(15, "Who will win the match?", 1.0, new Event(21, "Atletico-Athletic", calendar.getTime(), new Team("Atletico"), new Team("Athletic")))); 
+		q = new Quote(100.0, "2", new Question(15, "Who will win the match?", 1.0, new Event(21, "Atletico-Athletic", calendar.getTime(), new Team("Atletico"), new Team("Athletic"))));
+		Mockito.doThrow(new EventNotFinished()).when(da).EmaitzakIpini(q);
 		try {
-			Mockito.doThrow(new EventNotFinished()).when(da).EmaitzakIpini(q);
 			da.EmaitzakIpini(q);
 			fail("No deberia de ir bien");
 		} catch (EventNotFinished e) {
@@ -67,7 +67,7 @@ public class EmaitzakIpiniBLBMTest {
 			da.EmaitzakIpini(q);
 			Mockito.verify(da, Mockito.times(1)).EmaitzakIpini(Mockito.any(Quote.class));
 		} catch (EventNotFinished e) {
-			fail("Todo debería ir bien");
+			fail("Todo deberï¿½a ir bien");
 		}
 	}
 	
@@ -80,7 +80,7 @@ public class EmaitzakIpiniBLBMTest {
 			da.EmaitzakIpini(q);
 			Mockito.verify(da, Mockito.times(1)).EmaitzakIpini(Mockito.any(Quote.class));
 		} catch (EventNotFinished e) {
-			fail("Todo debería ir bien");
+			fail("Todo deberï¿½a ir bien");
 		}
 	}
 	
@@ -93,7 +93,7 @@ public class EmaitzakIpiniBLBMTest {
 			da.EmaitzakIpini(q);
 			Mockito.verify(da, Mockito.times(1)).EmaitzakIpini(Mockito.any(Quote.class));
 		} catch (EventNotFinished e) {
-			fail("Todo debería ir bien");
+			fail("Todo deberï¿½a ir bien");
 		}
 	} 
 }
