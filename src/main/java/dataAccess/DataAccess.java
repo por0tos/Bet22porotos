@@ -1101,9 +1101,9 @@ public void open(boolean initializeMode){
 		Boolean b=false;
 		Registered jarraitu = (Registered) db.find(Registered.class, jarraitua.getUsername());
 		Registered harpideduna = (Registered) db.find(Registered.class, jabea.getUsername());
-		if(!harpideduna.getJarraitutakoLista().contains(jarraitu)) {
+		Jarraitzailea jar = new Jarraitzailea(harpideduna, jarraitu);
+		if(!harpideduna.getJarraitutakoLista().contains(jar)) {
 			db.getTransaction().begin();
-			Jarraitzailea jar = new Jarraitzailea(harpideduna, jarraitu);
 			harpideduna.addJarraitutako(jar);
 			jarraitu.addJarraitzailea(jar);
 			b=true;
