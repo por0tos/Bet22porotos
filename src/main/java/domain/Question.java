@@ -32,7 +32,7 @@ public class Question implements Serializable {
 	@XmlIDREF
 	private Event event;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	private Vector<Quote> quotes=new Vector<Quote>();
+	private Vector<Quote> quotes=new Vector<>();
 
 	public Question(){
 		super();

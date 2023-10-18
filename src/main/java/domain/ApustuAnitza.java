@@ -26,7 +26,7 @@ public class ApustuAnitza implements Serializable{
 	private Integer apustuAnitzaNumber;
 	private Date data;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	private Vector<Apustua> apustuak = new Vector<Apustua>();
+	private Vector<Apustua> apustuak = new Vector<>();
 	@XmlIDREF
 	private Registered user;
 	private String egoera;

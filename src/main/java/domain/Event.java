@@ -23,7 +23,7 @@ public class Event implements Serializable {
 	private String description; 
 	private Date eventDate;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	private Vector<Question> questions=new Vector<Question>();
+	private Vector<Question> questions=new Vector<>();
 	@XmlIDREF
 	private Sport sport;
 	@XmlIDREF
