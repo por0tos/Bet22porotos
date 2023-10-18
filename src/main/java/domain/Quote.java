@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Vector;
 
 import javax.persistence.CascadeType;
@@ -105,16 +106,19 @@ public class Quote implements Serializable{
 			i++; 
 		}
 	}
-	
+
 	@Override
-	public boolean equals(Object o) {
-		if(o != null) {
-			Quote q = (Quote)o;
-			return this.getQuoteNumber()==q.getQuoteNumber();
-		} else {
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
+		Quote other = (Quote) obj;
+		return Objects.equals(quoteNumber, other.quoteNumber);
 	}
+	
 	
 	
 }

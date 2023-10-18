@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Vector;
 
 import javax.persistence.CascadeType;
@@ -84,13 +85,18 @@ public class Apustua implements Serializable{
 	public void eguneratuApustuKant(Sport s) {
 		s.eguneratuApustuKantitatea();
 	}
-	
+
 	@Override
-	public boolean equals(Object o) {
-		Apustua a = (Apustua) o; 
-		if(a==null) {
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
-		return this.getApostuaNumber().equals(a.getApostuaNumber()); 
+		if (getClass() != obj.getClass())
+			return false;
+		Apustua other = (Apustua) obj;
+		return Objects.equals(apustuaNumber, other.apustuaNumber);
 	}
+	
+	
 }

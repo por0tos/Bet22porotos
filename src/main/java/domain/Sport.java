@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Vector;
 
 import javax.persistence.CascadeType;
@@ -69,13 +70,16 @@ public class Sport implements Serializable{
 	public String toString() {
 		return this.izena;
 	}
-	
+
 	@Override
-	public boolean equals(Object o) {
-		Sport sp = (Sport) o;
-		if(sp==null) {
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
-		return this.izena.equals(sp.getIzena());
+		if (getClass() != obj.getClass())
+			return false;
+		Sport other = (Sport) obj;
+		return Objects.equals(izena, other.izena);
 	}
 }

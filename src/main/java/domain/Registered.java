@@ -136,9 +136,11 @@ public class Registered  implements Serializable{
 	public Vector<Jarraitzailea> getJarraitutakoLista() {
 		return nikLista;
 	}
+	
 	public void setJarraitutakoLista(Vector<Jarraitzailea> jarraitutakoLista) {
 		this.nikLista = jarraitutakoLista;
 	}
+	
 	public void addTransaction(Transaction t) {
 		this.transakzioak.add(t); 
 	}
@@ -180,6 +182,7 @@ public class Registered  implements Serializable{
 	public void setTaldea(Team taldea) {
 		this.taldea = taldea;
 	}
+	
 	public String getUsername() {
 		return usrname;
 	}
