@@ -153,7 +153,6 @@ public class EmaitzakIpiniGUI extends JFrame{
 		getContentPane().add(jComboBoxQuotes);
 		jButtonEmaitzaIpini.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Question que= (Question) jComboBoxQuestions.getSelectedItem();
 				Quote q = (Quote)jComboBoxQuotes.getSelectedItem(); 
 				try {
 					businessLogic.EmaitzakIpini(q);
