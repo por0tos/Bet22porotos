@@ -87,6 +87,11 @@ public class Apustua implements Serializable{
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(apustuAnitza, apustuaNumber, egoera, kuota);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -95,7 +100,8 @@ public class Apustua implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Apustua other = (Apustua) obj;
-		return Objects.equals(apustuaNumber, other.apustuaNumber);
+		return Objects.equals(apustuAnitza, other.apustuAnitza) && Objects.equals(apustuaNumber, other.apustuaNumber)
+				&& Objects.equals(egoera, other.egoera) && Objects.equals(kuota, other.kuota);
 	}
 	
 	
