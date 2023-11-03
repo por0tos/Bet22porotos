@@ -1,6 +1,6 @@
 package businessLogic;
 import java.util.Collection;
-//hola
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -102,6 +102,24 @@ public class BLFacadeImplementation  implements BLFacade {
 		Vector<Event>  events=dbManager.getEvents(date);
 		dbManager.close();
 		return events;
+	}
+    
+	/**
+	 * This method invokes the data access to retrieve the events of a given date 
+	 * 
+	 * @param date in which events are retrieved
+	 * @return iterator of events
+	 */
+    @WebMethod	
+	public ExtendedIterator<Event> getEventsIterator(Date date)  {
+		dbManager.open(false);
+		Vector<Event> events=dbManager.getEvents(date);
+		dbManager.close();
+		ArrayList<Event> arr = new ArrayList<Event>();
+		for (Event e : events) {
+			arr.add(e);
+		}
+		return new ExtendedIterator<Event>(arr);
 	}
 
     
