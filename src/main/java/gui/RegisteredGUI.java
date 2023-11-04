@@ -48,6 +48,7 @@ public class RegisteredGUI extends JFrame {
 	private JButton jButtonApustuaEgin;
 	private JButton jButtonApustuaEzabatu;
 	private JButton jButtonMugimenduakBistaratu;
+	private JButton jButtonVerApuestasUsuario;
 	private JButton jButtonDesLogin;
 	private JFrame thisw;
 	private JButton btnNewButton;
@@ -111,6 +112,7 @@ public class RegisteredGUI extends JFrame {
 			jContentPane.add(getJButtonDesLogin());
 			jContentPane.add(getBtnRank());
 			jContentPane.add(getBtnDestacados());
+			jContentPane.add(getJButtonVerApuestasUsuario());
 		}
 		return jContentPane;
 	}
@@ -222,6 +224,22 @@ public class RegisteredGUI extends JFrame {
 			jButtonMugimenduakBistaratu.setBounds(10, 302, 282, 68);
 		}
 		return jButtonMugimenduakBistaratu;
+	}
+	private JButton getJButtonVerApuestasUsuario() {
+		if (jButtonVerApuestasUsuario == null) {
+			jButtonVerApuestasUsuario = new JButton("Ver Apuestas Realizadas");
+			jButtonVerApuestasUsuario.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			jButtonVerApuestasUsuario.setBackground(Color.PINK);
+			jButtonVerApuestasUsuario.setForeground(Color.DARK_GRAY);
+			jButtonVerApuestasUsuario.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame a = new UserBetsGUI(user); 
+					a.setVisible(true);
+				}
+			});
+			jButtonVerApuestasUsuario.setBounds(10, 391, 282, 68);
+		}
+		return jButtonVerApuestasUsuario;
 	}
 	private JButton getJButtonDesLogin() {
 		if (jButtonDesLogin == null) {
